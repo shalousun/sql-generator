@@ -1,9 +1,10 @@
-package com.power.generator.builder;
+package com.power.sql.generator.builder;
 
 
 import com.boco.common.util.StringUtil;
 import com.boco.common.util.ValidateUtil;
-import com.power.generator.model.DataModel;
+import com.power.sql.generator.model.DataModel;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,6 +72,7 @@ public class CodeBuilder {
             builder.append("/*============================================================*/\n");
             builder.append("/* Table:").append(tableName).append("   */\n");
             builder.append("/*============================================================*/\n");
+            builder.append("create table ").append(tableName).append("(\n");
             for (DataModel dataModel : listOfData) {
                 // toLowerCase
                 String type = dataModel.getType().trim().toLowerCase();
@@ -93,7 +95,7 @@ public class CodeBuilder {
 
                 //拼装注释
                 comments.append("comment on column ").append(tableName).append(".").append(fieldName);
-                comments.append("'").append(comment).append("';\n");
+                comments.append(" is '").append(comment).append("';\n");
 
                 boolean typeIsNotEmpty = StringUtil.isNotEmpty(type);
                 if (typeIsNotEmpty && ("char".equals(type))){
@@ -182,7 +184,7 @@ public class CodeBuilder {
 
             }
             builder.deleteCharAt(builder.lastIndexOf(","));
-            builder.append(");");
+            builder.append(");\n");
             builder.append(comments);
         }
 

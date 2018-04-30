@@ -1,4 +1,4 @@
-package com.power.generator.model;
+package com.power.sql.generator.model;
 
 /**
  * 公共返回结果

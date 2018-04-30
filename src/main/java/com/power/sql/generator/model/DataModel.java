@@ -1,4 +1,4 @@
-package generator.model;
+package com.power.sql.generator.model;
 
 
 import com.power.poi.annotation.Excel;

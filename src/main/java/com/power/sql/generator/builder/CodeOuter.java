@@ -1,11 +1,9 @@
-package com.power.generator.builder;
+package com.power.sql.generator.builder;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 代码输出

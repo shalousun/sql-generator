@@ -1,12 +1,12 @@
-package com.power.generator.window;
+package com.power.sql.generator.window;
 
 
 
 import com.boco.common.util.DateTimeUtil;
-import com.power.generator.builder.CodeBuilder;
-import com.power.generator.builder.CodeOuter;
-import com.power.generator.model.DataModel;
 import com.power.poi.excel.ExcelImportUtil;
+import com.power.sql.generator.builder.CodeBuilder;
+import com.power.sql.generator.builder.CodeOuter;
+import com.power.sql.generator.model.DataModel;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;

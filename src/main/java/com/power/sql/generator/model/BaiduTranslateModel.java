@@ -1,4 +1,4 @@
-package generator.model;
+package com.power.sql.generator.model;
 
 /**
  * 百度翻译数据模型

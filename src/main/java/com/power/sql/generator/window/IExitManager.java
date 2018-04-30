@@ -1,4 +1,4 @@
-package generator.window;
+package com.power.sql.generator.window;
 
 /**
  * swing退出管理者接口

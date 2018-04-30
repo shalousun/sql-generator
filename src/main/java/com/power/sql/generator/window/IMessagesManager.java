@@ -1,4 +1,4 @@
-package generator.window;
+package com.power.sql.generator.window;
 
 /**
  *  程序运行状态信息管理接口
