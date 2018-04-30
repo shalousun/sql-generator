@@ -74,12 +74,24 @@ public class CodeBuilder {
             builder.append("/*============================================================*/\n");
             builder.append("create table ").append(tableName).append("(\n");
             for (DataModel dataModel : listOfData) {
+
+                String length = null;
+                String precision = null;//decimal数据类型精度值设置
                 // toLowerCase
                 String type = dataModel.getType().trim().toLowerCase();
-                //检测长度和精度是否合法
-                Map<String,String> lengthEndPrecision = checkLengthAndPrecision(dataModel, oracleType, tableName);
-                String length = lengthEndPrecision.get("length");
-                String precision = lengthEndPrecision.get("precision");//decimal数据类型精度值设置
+                if(type.contains("(")&& type.contains(")")){
+                    int index = type.indexOf("(");
+                    int endIndex = type.indexOf(")");
+                    length = type.substring(index+1,endIndex);
+                    precision = type.substring(index+1,endIndex);
+                    type = type.substring(0,index);
+                }else{
+                    //检测长度和精度是否合法
+                    Map<String,String> lengthEndPrecision = checkLengthAndPrecision(dataModel, oracleType, tableName);
+                    length = lengthEndPrecision.get("length");
+                    precision = lengthEndPrecision.get("precision");//decimal数据类型精度值设置
+                }
+
                 boolean isAllowEmpty = processAllowEmpty(dataModel, tableName);
 
 
@@ -186,6 +198,7 @@ public class CodeBuilder {
             builder.deleteCharAt(builder.lastIndexOf(","));
             builder.append(");\n");
             builder.append(comments);
+            builder.append("\n");
         }
 
         return builder.toString();

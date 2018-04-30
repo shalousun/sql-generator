@@ -23,6 +23,7 @@ public class CreateSqlFromExcelTest {
         String outputSql = "d://test.sql";
         createSqlFromExcel(excel,outputSql);
 
+
         //读取本项目下的template模板输出脚本测试
 //        String excelInResource = "template.xls";
 //        InputStream input = Thread.currentThread().getContextClassLoader()
