@@ -1,8 +1,8 @@
 package com.power.sql.generator.builder;
 
 
-import com.boco.common.util.StringUtil;
-import com.boco.common.util.ValidateUtil;
+import com.power.common.util.StringUtil;
+import com.power.common.util.ValidateUtil;
 import com.power.sql.generator.model.DataModel;
 
 
@@ -238,7 +238,7 @@ public class CodeBuilder {
                 String length = lengthEndPrecision.get("length");
                 String precision = lengthEndPrecision.get("precision");//decimal数据类型精度值设置
 
-                boolean primaryKey = StringUtil.strToBoolean("false");// 强制加主键
+                boolean primaryKey = Boolean.valueOf("false");// 强制加主键
                 boolean isAllowEmpty = processAllowEmpty(dataModel, tableName);
 
                 if (primaryKey) {

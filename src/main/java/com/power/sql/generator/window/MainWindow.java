@@ -1,8 +1,7 @@
 package com.power.sql.generator.window;
 
 
-
-import com.boco.common.util.DateTimeUtil;
+import com.power.common.util.DateTimeUtil;
 import com.power.poi.excel.ExcelImportUtil;
 import com.power.sql.generator.builder.CodeBuilder;
 import com.power.sql.generator.builder.CodeOuter;
@@ -236,8 +235,7 @@ public class MainWindow implements IMessagesManager, IExitManager {
 		Map<String, List<DataModel>> map = ExcelImportUtil.readExcelIntoMap(file, 1, DataModel.class);
 		String sql = CodeBuilder.createSqlForMysql(map);
 		File sqlFile = new File(outDir);
-		boolean flag = CodeOuter.writeFile(sql, sqlFile);
-		return flag;
+		return CodeOuter.writeFile(sql, sqlFile);
 	}
 
 	/**
@@ -253,7 +251,7 @@ public class MainWindow implements IMessagesManager, IExitManager {
 				e.printStackTrace();
 			}
 		}
-		messageArea.append(DateTimeUtil.getTime() + "：" + messages + "\r\n");
+		messageArea.append(DateTimeUtil.long2Str(System.currentTimeMillis(),DateTimeUtil.DATE_FORMAT_CHINESE_SECONDE) + "：" + messages + "\r\n");
 		return true;
 	}
 
