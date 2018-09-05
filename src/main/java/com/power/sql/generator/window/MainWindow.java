@@ -2,6 +2,7 @@ package com.power.sql.generator.window;
 
 
 import com.power.common.util.DateTimeUtil;
+import com.power.common.util.FileUtil;
 import com.power.poi.excel.ExcelImportUtil;
 import com.power.sql.generator.builder.CodeBuilder;
 import com.power.sql.generator.builder.CodeOuter;
@@ -26,7 +27,7 @@ import java.util.Map;
  */
 public class MainWindow implements IMessagesManager, IExitManager {
 	private static final int MESSAGES_QUEUE_SIZE = 200;
-	private static final String OUTPUT_DIR = "D:\\build.sql";// 脚本输出路径
+	private static final String OUTPUT_DIR = "build.sql";// 脚本输出路径
 	private final String SERVER_NAME = "POWER-EXCEL建库工具V1.0";// 窗口名称
 	private JFrame mainWindow;// 主窗口
 	private JButton startButton;// 开始按钮
@@ -164,9 +165,11 @@ public class MainWindow implements IMessagesManager, IExitManager {
 					selectButton.setEnabled(false);// 线程启动后将按钮设为不可编辑
 					startButton.setEnabled(false);// 线程启动后将停止按钮开启
 					try {
-						writeSql(file, OUTPUT_DIR);
+						File[] roots = File.listRoots();
+						String outDir = roots[1]+File.separator+OUTPUT_DIR;
+						writeSql(file, outDir);
 						showMessages(Level.INFO, "脚本创建成功  SUCCESSED!");
-						showMessages(Level.INFO, "脚本已输出到：" + OUTPUT_DIR + "中 ！！！");
+						showMessages(Level.INFO, "脚本已输出到：" + outDir + "中 ！！！");
 						dirText.setText("");
 						isRunning = false;
 					} catch (Exception e1) {
@@ -234,10 +237,10 @@ public class MainWindow implements IMessagesManager, IExitManager {
 	public boolean writeSql(File file, String outDir) throws Exception {
 		Map<String,String> tableNames = ExcelImportUtil.readExcelIntoMap(file,0,1);
 		Map<String,String> tableComments = ExcelImportUtil.readExcelIntoMap(file,1,1);
-		Map<String, List<DataModel>> map = ExcelImportUtil.readExcelIntoMap(file, 1, DataModel.class);
+		Map<String, List<DataModel>> map = ExcelImportUtil.readExcelIntoMap(file, 3, DataModel.class);
 		String sql = CodeBuilder.createSqlForMysql(map,tableNames,tableComments);
 		File sqlFile = new File(outDir);
-		return CodeOuter.writeFile(sql, sqlFile);
+		return CodeOuter.writeFile(sql,sqlFile);
 	}
 
 	/**

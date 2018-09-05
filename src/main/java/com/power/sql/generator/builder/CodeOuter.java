@@ -1,9 +1,6 @@
 package com.power.sql.generator.builder;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * 代码输出
@@ -25,7 +22,8 @@ public class CodeOuter {
 		BufferedWriter output = null;
 		try {
 			file.createNewFile();
-			output = new BufferedWriter(new FileWriter(file));
+			OutputStream out=new FileOutputStream(file);
+			output = new BufferedWriter(new OutputStreamWriter(out,"utf-8"));
 			output.write(str);
 			flag = true;
 		} catch (IOException e) {
