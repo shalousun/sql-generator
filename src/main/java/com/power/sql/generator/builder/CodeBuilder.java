@@ -212,18 +212,19 @@ public class CodeBuilder {
      * @param excelData
      * @return
      */
-    public static String createSqlForMysql(Map<String, List<DataModel>> excelData) {
+    public static String createSqlForMysql(Map<String, List<DataModel>> excelData,Map<String,String> tableNames,Map<String,String> tableComment) {
 
         StringBuilder builder = new StringBuilder();
         List<DataModel> listOfData;
         String tableName = null;
         for (Map.Entry<String, List<DataModel>> entry : excelData.entrySet()) {
-
+            String key = entry.getKey();
             listOfData = entry.getValue();
             if (listOfData.size() < 1) {
                 throw new RuntimeException("无法读取数据，工作表[" + tableName + "]" + DATA_ERROR);
             }
-            tableName = entry.getKey().toLowerCase();
+            //tableName = entry.getKey().toLowerCase();
+            tableName = tableNames.get(key).toLowerCase();
             builder.append("/*============================================================*/\n");
             builder.append("/* Table:").append(tableName).append("   */\n");
             builder.append("/*============================================================*/\n");
@@ -332,7 +333,8 @@ public class CodeBuilder {
                 }
             }
             builder.append("  primary key (id)\n");
-            builder.append(")ENGINE=InnoDB DEFAULT CHARSET=utf8;\n\n");
+            builder.append(")ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='");
+            builder.append(tableComment.get(entry.getKey())).append("';\n\n");
         }
         return builder.toString();
     }

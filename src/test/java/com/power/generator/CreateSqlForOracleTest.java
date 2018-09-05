@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * @author sunyu
  */
-public class CreateSqlFromExcelTest {
+public class CreateSqlForOracleTest {
     public static void main(String[] args) throws Exception {
 
         //根据excel生成sql信息

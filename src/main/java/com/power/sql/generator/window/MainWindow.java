@@ -232,8 +232,10 @@ public class MainWindow implements IMessagesManager, IExitManager {
 	 * @throws Exception
 	 */
 	public boolean writeSql(File file, String outDir) throws Exception {
+		Map<String,String> tableNames = ExcelImportUtil.readExcelIntoMap(file,0,1);
+		Map<String,String> tableComments = ExcelImportUtil.readExcelIntoMap(file,1,1);
 		Map<String, List<DataModel>> map = ExcelImportUtil.readExcelIntoMap(file, 1, DataModel.class);
-		String sql = CodeBuilder.createSqlForMysql(map);
+		String sql = CodeBuilder.createSqlForMysql(map,tableNames,tableComments);
 		File sqlFile = new File(outDir);
 		return CodeOuter.writeFile(sql, sqlFile);
 	}

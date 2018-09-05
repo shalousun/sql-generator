@@ -29,7 +29,7 @@
         <dependency>
             <groupId>com.power.poi</groupId>
             <artifactId>power-poi</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <!--https://gitee.com/sunyurepository/ApplicationPower-->
         <dependency>
