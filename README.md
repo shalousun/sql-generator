@@ -3,5 +3,5 @@
 # 使用方法
 
 - 下载resources下的excel模板，按照模板建模模型表格
-- https://github.com/shalousun/sql-generator/releases/tag/v1.0下载执行包
+- 下载执行包https://github.com/shalousun/sql-generator/releases/tag/v1.0
 - 在弹出界面选择建表excel即可
